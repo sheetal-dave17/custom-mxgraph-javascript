@@ -237,6 +237,8 @@
 .geMenubar {
 	padding:0px 2px 0px 2px;
 	vertical-align:middle;
+	display: inline-block;
+    flex: 1;
 }
 .geMenubarContainer .geItem, .geToolbar .geItem {
 	padding:6px 6px 6px 9px;

@@ -3738,6 +3738,7 @@ EditorUi.prototype.createDivs = function()
 	this.menubarContainer.style.top = '0px';
 	this.menubarContainer.style.left = '0px';
 	this.menubarContainer.style.right = '0px';
+	this.menubarContainer.style.display = 'flex';
 	this.toolbarContainer.style.left = '0px';
 	this.toolbarContainer.style.right = '0px';
 	this.sidebarContainer.style.left = '0px';
@@ -3747,6 +3748,7 @@ EditorUi.prototype.createDivs = function()
 	this.footerContainer.style.left = '0px';
 	this.footerContainer.style.right = '0px';
 	this.footerContainer.style.bottom = '0px';
+	this.footerContainer.style.display = 'flex';
 	this.footerContainer.style.zIndex = mxPopupMenu.prototype.zIndex - 2;
 	this.hsplit.style.width = this.splitSize + 'px';
 	this.sidebarFooterContainer = this.createSidebarFooterContainer();
@@ -3781,12 +3783,24 @@ EditorUi.prototype.createUi = function()
 {
 	// Creates menubar
 	this.menubar = (this.editor.chromeless) ? null : this.menus.createMenubar(this.createDiv('geMenubar'));
+
+	// create timer 
+	this.timer = this.createDiv('timer');
+	this.timer.style.cssText = "padding: 8px 15% 8px 8px";
+
+
+	this.timer.innerText = "Timer";
 	
 	if (this.menubar != null)
 	{
 		this.menubarContainer.appendChild(this.menubar.container);
 	}
 	
+	if (this.timer != null)
+	{
+		this.menubarContainer.appendChild(this.timer);
+	}
+
 	// Adds status bar in menubar
 	if (this.menubar != null)
 	{
