@@ -1,0 +1,8 @@
+version: '3'
+services:
+    grapheditor:
+        build:
+            context: grapheditor
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"

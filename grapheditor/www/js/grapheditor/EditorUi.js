@@ -4337,10 +4337,35 @@ EditorUi.prototype.createUi = function()
 	
 	// create timer 
 	this.timer = this.createDiv('timer');
-	this.timer.style.cssText = "padding: 8px 15% 8px 8px";
+	this.timer.style.cssText = "padding: 2px 5% 8px 8px; font-size: 25px; color: 'gray';";
+	let countDownDate = new Date("August 2, 2022 17:45:00").getTime();
+	let self = this;
+	
+	setTimeout(() => {
+		var x = setInterval(() => {
+			// Get today's date and time
+			var now = new Date().getTime();
 
+			// Find the distance between now and the count down date
+			var distance = countDownDate - now;
 
-	this.timer.innerText = "COCKCLOCKCLOCKCKCKKCKCCCKKKKKKSCKKKKDKKCKDKCDSKC";
+			// Time calculations for days, hours, minutes and seconds
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			// Display the result in the element with id="demo"
+			self.timer.innerHTML = hours + ":" + minutes + ":" + seconds;
+
+			// If the count down is finished, write some text
+			if (distance < 0) {
+				clearInterval(x);
+				self.timer.innerHTML = "EXPIRED";
+			}
+		}, 1000);
+	})
+
+	this.timer.innerText = "------------------------------CUSTOM TIMER ELEMENT------------------------------";
 
 	if (this.menubar != null)
 	{

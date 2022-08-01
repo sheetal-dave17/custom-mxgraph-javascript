@@ -1,0 +1,65 @@
+#https://www.digitalocean.com/community/questions/ant-build-tool-inside-docker-file-can-not-ask-option-as-input-at-console-but-ant-ask-option-without-docker
+
+FROM alpine:3.5
+
+#Create Ant Dir in Docker container
+RUN mkdir -p /opt/ant/
+
+ENV PATH /opt/ant//-00\:$PATH
+
+WORKDIR /opt/ant
+
+COPY build.xml ./
+
+#Download Ant 1.9.8
+RUN wget http://archive.apache.org/dist/ant/binaries/apache-ant-1.9.8-bin.tar.gz -P /opt/ant
+
+#Unpack Apache Ant for Java builds
+RUN tar -xvzf /opt/ant/apache-ant-1.9.8-bin.tar.gz -C /opt/ant/
+
+# Remove tar file
+RUN rm -f /opt/ant/apache-ant-1.9.8-bin.tar.gz
+
+ENV ANT_HOME=/opt/ant/apache-ant-1.9.8
+#Set Ant Params in Docker for Jenkins
+ENV ANT_OPTS="-Xms256M -Xmx512M"
+
+
+# install packages
+RUN apk --update add openjdk8-jre  /usr/lib
+
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+#Update Path
+
+#Update Path
+ENV PATH="${PATH}:${HOME}/bin:${ANT_HOME}/bin"
+
+# #Install JDK 1.8
+# RUN apk --update add openjdk8
+
+RUN ant
+
+# FROM openjdk:6
+
+# ENV CATALINA_HOME /usr/local/tomcat
+# ENV PATH $CATALINA_HOME/bin:$PATH
+
+# RUN mkdir -p "$CATALINA_HOME"
+# WORKDIR $CATALINA_HOME
+
+# # Tomcat folder creation inside Docker container
+# COPY tomcat   $CATALINA_HOME
+
+# ENV ANT_HOME /usr/local/ant
+# ENV PATH ${PATH}:/usr/local/ant/bin
+
+# # Added ANT tool from host to docker container
+# ADD apache-ant-1.7.0 /usr/local/ant
+
+# # Added application from host to docker container
+# # TempProject contains build.xml , src and webroot
+# ADD TempProject /usr/local/TempProject  
+
+# WORKDIR /usr/local/TempProject 
+
+# RUN ant
