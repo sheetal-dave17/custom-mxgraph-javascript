@@ -3701,7 +3701,7 @@ Sidebar.prototype.addStencilPalette = function (id, title, stencilFile, style, i
 				if (ignore == null || mxUtils.indexOf(ignore, stencilName) < 0) {
 					content.appendChild(this.createVertexTemplate('shape=' + packageName + stencilName.toLowerCase() + style,
 						Math.round(w * scale), Math.round(h * scale), '', stencilName.replace(/_/g, ' '), true));
-				}
+		}
 			}), true);
 		}));
 	}

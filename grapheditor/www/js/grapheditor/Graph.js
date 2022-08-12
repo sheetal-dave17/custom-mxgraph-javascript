@@ -1890,7 +1890,7 @@ Graph.isPageLink = function(text)
 };
 
 /**
- * Returns true if the given string is a link.
+ * Retuzrns true if the given string is a link.
  * 
  * See https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
  */
@@ -1922,7 +1922,7 @@ Graph.prototype.minFitScale = null;
 /**
  * Allows all values in fit.
  */
-Graph.prototype.maxFitScale = null;
+Graph.prototype.maxFitScale	 = null;
 
 /**
  * Sets the policy for links. Possible values are "self" to replace any framesets,
@@ -13224,7 +13224,7 @@ if (typeof mxVertexHandler !== 'undefined')
 							{
 								if (this.graph.isCellMovable(cells[i]))
 								{
-									var tmp = this.graph.view.getState(cells[i]);
+										var tmp = this.graph.view.getState(cells[i]);
 									var geo = this.graph.getCellGeometry(cells[i]);
 									
 									if (tmp != null && geo != null)
@@ -13384,7 +13384,7 @@ if (typeof mxVertexHandler !== 'undefined')
 	    	else
 	    	{
 		    	timeOnTarget = new Date().getTime() - startTime;
-	    	}
+	    	}	
 			
 			this.currentTerminalState = terminalState;
 		};

@@ -929,7 +929,7 @@
 											}
 											else {
 												error = mxResources.get('notALibraryFile');
-												barrier();
+														barrier();
 											}
 										}
 										catch (e) {
@@ -1083,16 +1083,23 @@
 					var img = preList[i].innerHTML.split('-')[0];
 					customImages.push(img);
 				}
-
+				
+				console.log('customImages', customImages);
 				var categoriesImages = {};
 				customImages.forEach((item) => {
+					let exclueds = ["Parent Directory", "Description", "Size", "Last modified"];
 					let prefix = item.split('_')[0];
-					if (!categoriesImages[prefix]) {
-						categoriesImages[prefix] = [];
+					console.log('prefix------------------------------------', prefix);
+					if(!exclueds.includes(prefix)) {
+						if (!categoriesImages[prefix]) {
+							categoriesImages[prefix] = [];
+						}
+						categoriesImages[prefix].push(item)
 					}
-					categoriesImages[prefix].push(item)
+					
 				})
-
+			
+				console.log('categoriesImages--------------------', categoriesImages);
 				Object.keys(categoriesImages).forEach((key) => {
 					self.addImagePalette(key, key, dir + '/customIcon/', '',
 						categoriesImages[key], null,
@@ -1231,7 +1238,7 @@
 		}
 	};
 
-	/**
+	/**	
 	 * Adds server icon results to local search results
 	 */
 	var sidebarSearchEntries = Sidebar.prototype.searchEntries;

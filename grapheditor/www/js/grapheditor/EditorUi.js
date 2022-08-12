@@ -3545,7 +3545,7 @@ EditorUi.prototype.updateDocumentTitle = function()
 	var title = this.editor.getOrCreateFilename();
 	
 	if (this.editor.appName != null)
-	{
+		{
 		title += ' - ' + this.editor.appName;
 	}
 	
@@ -3752,7 +3752,7 @@ EditorUi.prototype.resetScrollbars = function()
 		}
 		else
 		{
-			var b = mxRectangle.fromRectangle((graph.pageVisible) ? graph.view.getBackgroundPageBounds() : graph.getGraphBounds())
+				var b = mxRectangle.fromRectangle((graph.pageVisible) ? graph.view.getBackgroundPageBounds() : graph.getGraphBounds())
 			var tr = graph.view.translate;
 			var s = graph.view.scale;
             b.x = b.x / s - tr.x;
@@ -4338,7 +4338,7 @@ EditorUi.prototype.createUi = function()
 	// create timer 
 	this.timer = this.createDiv('timer');
 	this.timer.style.cssText = "padding: 2px 5% 8px 8px; font-size: 25px; color: 'gray';";
-	let countDownDate = new Date("August 2, 2022 17:45:00").getTime();
+	let countDownDate = new Date("August 20, 2022 11:59:59").getTime();
 	let self = this;
 	
 	setTimeout(() => {
@@ -4361,6 +4361,13 @@ EditorUi.prototype.createUi = function()
 			if (distance < 0) {
 				clearInterval(x);
 				self.timer.innerHTML = "EXPIRED";
+				var childNodes = document.getElementsByClassName("geEditor")[0].getElementsByTagName('*');
+				for (var node of childNodes) {
+					node.style.pointerEvents = 'none';
+					node.style.color = '#AAA';
+					node.style.background ='#F5F5F5';
+
+				}
 			}
 		}, 1000);
 	})
